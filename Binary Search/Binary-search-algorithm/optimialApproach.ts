@@ -5,32 +5,24 @@
 function findIndexOfNumber(num: number[], n: number, k: number): number {
   let low = 0;
   let high = n - 1;
-  let mid = Math.ceil((low + high) / 2);
-  console.log("high", high)
-  console.log(low, mid, high);
+
   let index = -1;
-  while (low < mid) {
+
+  while (low <= high) {
+    let mid = Math.floor((low + high) / 2);
     if (num[mid] === k) {
-      index = mid;
-      console.log(mid);
-      break;
-    }
-    if (num[low] === k) {
-      index = low;
-    break;
+      return mid;
     }
     if (k <= num[mid]) {
-      high = mid;
+      high = mid-1; // Will remove the not matched mid, decreasing the search space.
     } else {
-      low = mid + 1;
+      low = mid + 1; // Will remove the not matched mid, decreasing the search space.
     }
-    mid = Math.ceil((low + high) / 2);
-    console.log("mid",mid)
   }
-  return index;
+  return index; // not found
 }
 
 const num = [3, 4, 6, 7, 9, 12, 16, 17];
 const k = 17;
-console.log(findIndexOfNumber(num, num.length, k));
+console.log(findIndexOfNumber(num, num.length, 6));
 //Bruseforce: O(n^2), O(1)
