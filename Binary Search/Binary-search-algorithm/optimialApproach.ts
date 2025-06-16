@@ -2,7 +2,7 @@
 //Assume the given array does not contain any duplicate numbers.
 // Lett’s say the given array is = {3, 4, 6, 7, 9, 12, 16, 17} and target = 6.
 
-function findIndexOfNumber(num: number[], n: number, k: number): number {
+export function findIndexOfNumber(num: number[], n: number, k: number): number {
   let low = 0;
   let high = n - 1;
 
