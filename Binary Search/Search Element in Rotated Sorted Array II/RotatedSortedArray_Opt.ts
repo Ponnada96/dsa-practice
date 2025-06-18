@@ -1,29 +1,41 @@
-// Problem Statement: Given an integer array arr of size N, sorted in ascending order
-// (may contain duplicate values) and a target value k.
-// Now the array is rotated at some pivot point unknown to you. 
-// Return True if k is present and otherwise, return False.
+// Problem Statement: Given an integer array arr of size N,
+// sorted in ascending order (may contain duplicate values) and a target value k.
+// Now the array is rotated at some pivot point unknown to you.
+//  Return True if k is present and otherwise, return False.
 
-
-export const findIsNumberExists = (num: number[], k: number) => {
+export const findElementInRotatedSortedArray = (num: number[], k: number) => {
   let low = 0;
   let high = num.length - 1;
 
-  let index = -1;
-
   while (low <= high) {
     let mid = Math.floor((low + high) / 2);
+
     if (num[mid] === k) {
-      return mid;
+      return true;
     }
-    if (k <= num[mid]) {
-      high = mid - 1; // Will remove the not matched mid, decreasing the search space.
+
+    if (num[low] === num[mid] && num[mid] === num[high]) {
+      low++;
+      high--;
+      continue;
+    }
+    if (num[low] <= num[mid]) {
+      if (k >= num[low] && k <= num[mid]) {
+        high = mid - 1;
+      } else {
+        low = mid + 1;
+      }
     } else {
-      low = mid + 1; // Will remove the not matched mid, decreasing the search space.
+      if (k >= num[mid] && k <= num[high]) {
+        low = mid + 1;
+      } else {
+        high = mid - 1;
+      }
     }
   }
-  return index; // not found
+  return false;
 };
-const numbers=[7, 8, 1, 2, 3, 3, 3, 4, 5, 6];
-const k = 7;
-const result =findIsNumberExists(numbers,k);
-console.log(result)
+const numbers = [3, 3, 3, 1, 2, 3, 3, 3, 3, 3, 3, 3, 3];
+const target2 = 9;
+const result = findElementInRotatedSortedArray(numbers, target2);
+console.log(result);

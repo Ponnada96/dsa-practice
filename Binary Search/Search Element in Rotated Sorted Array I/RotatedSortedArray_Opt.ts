@@ -39,7 +39,7 @@ export const findIsNumberExistsInRotatedShifArray = (num: number[], k: number) =
 }
 
 // Example usage
-const numbers = [4, 5, 6, 7, 0, 1, 2]; // Rotated sorted array
-const target1 = 2;
+const numbers = [7, 8, 1, 2, 3, 4, 5, 6]; // Rotated sorted array
+const target1 = 1;
 const result = findIsNumberExistsInRotatedShifArray(numbers, target1);
 console.log(result); // Output: 6 (index of 2)
